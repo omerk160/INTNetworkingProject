@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#KEY_PATH=/home/omer/omerNetworkingPTJkeypair.pem
+KEY_PATH_2=/home/ubuntu/omerNetworkingPTJkeypair.pem
+
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
   echo "KEY_PATH env var is expected"
@@ -23,9 +26,8 @@ if [ -z "$PRIVATE_IP" ]; then
 else
   # If both bastion IP and private IP are provided, connect to the private host through the bastion host
   if [ -z "$COMMAND" ]; then
-    ssh -i "$KEY_PATH" -o ProxyCommand="ssh -i $KEY_PATH -W %h:%p ubuntu@$BASTION_IP" ubuntu@"$PRIVATE_IP"
+    ssh -t -i "$KEY_PATH" ubuntu@"$BASTION_IP" "ssh -i $KEY_PATH_2 ubuntu@$PRIVATE_IP"
   else
-    ssh -i "$KEY_PATH" -o ProxyCommand="ssh -i $KEY_PATH -W %h:%p ubuntu@$BASTION_IP" ubuntu@"$PRIVATE_IP" "$COMMAND"
+    ssh -t -i "$KEY_PATH" ubuntu@"$BASTION_IP" "ssh -i $KEY_PATH_2 ubuntu@$PRIVATE_IP '$COMMAND'"
   fi
 fi
-
