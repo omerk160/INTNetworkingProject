@@ -1,26 +1,38 @@
 Local DNS Server IP
 -------------------
-<ip-here>
+172.0.0.53
 
 
 
 Default gateway IP
 -------------------
-<ip-here>
+10.0.0.1
 
 
 
 DHCP IP allocation sys-logs
 -------------------
-<logs-here>
+ubuntu@ip-10-0-0-195:~$ sudo grep -i "dhcp" /var/log/syslog
+2024-07-30T16:49:18.023898+00:00 ip-10-0-0-195 dhcpcd[451]: dhcpcd-10.0.6 starting
+2024-07-30T16:49:18.023903+00:00 ip-10-0-0-195 dhcpcd[454]: DUID 00:01:00:01:2e:3b:d6:06:06:61:b3:13:2e:11
+2024-07-30T16:49:18.023907+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: IAID b3:13:2e:11
+2024-07-30T16:49:18.023911+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: soliciting a DHCP lease
+2024-07-30T16:49:18.023915+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: offered 10.0.0.195 from 10.0.0.1
+2024-07-30T16:49:18.023920+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: leased 10.0.0.195 for 3600 seconds
+2024-07-30T16:49:18.023924+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: adding route to 10.0.0.0/24
+2024-07-30T16:49:18.023931+00:00 ip-10-0-0-195 dhcpcd[454]: ens5: adding default route via 10.0.0.1
+2024-07-30T16:49:18.023936+00:00 ip-10-0-0-195 dhcpcd[454]: control command: /usr/sbin/dhcpcd --dumplease --ipv4only ens5
+2024-07-30T16:49:18.024080+00:00 ip-10-0-0-195 systemd-networkd[522]: ens5: DHCPv4 address 10.0.0.195/24, gateway 10.0.0.1 acquired from 10.0.0.1
+
 
 
 
 Public to private num of hops
 -------------------
-<answer-here>
-
-
+1 hop, one you update the security group for the private ec2 to accept traceroute requests:
+traceroute to 10.0.1.194 (10.0.1.194), 30 hops max, 60 byte packets
+ 1  10.0.1.194 (10.0.1.194)  0.161 ms * *
 DNS queries from the private instance
 -------------------
-<answer-here>
+DNS queries would not work because port  53 is not open to the IGW
+DNS queries would only work for the root servers because they are saved locally insidde the cache
