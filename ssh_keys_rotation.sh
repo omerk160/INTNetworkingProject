@@ -19,7 +19,7 @@ scp -i "$OLD_KEY_PATH" $NEW_KEY_PATH ubuntu@$PUBLIC_IP:/home/ubuntu/id_rsa.pub
 
 # Add the new public key to the authorized_keys on the private instance
 ssh -i "$OLD_KEY_PATH" ubuntu@$PUBLIC_IP "echo $(cat $NEW_KEY_PATH.pub) >> ~/.ssh/authorized_keys"
-ssh -i "$OLD_KEY_PATH" ubuntu@$PUBLIC_IP "ssh -i /home/ubuntu/guy_networking_project_keypair.pem ubuntu@$PRIVATE_IP 'echo $(cat $NEW_KEY_PATH.pub) >> ~/.ssh/authorized_keys'"
+ssh -i "$OLD_KEY_PATH" ubuntu@$PUBLIC_IP "ssh -i /home/ubuntu/id_rsa ubuntu@$PRIVATE_IP 'echo $(cat $NEW_KEY_PATH.pub) >> ~/.ssh/authorized_keys'"
 
 
 # Replace the old key with the new key on the private instance
