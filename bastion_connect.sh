@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#KEY_PATH=/home/omer/omerNetworkingPTJkeypair.pem
-KEY_PATH_2=/home/ubuntu/omerNetworkingPTJkeypair.pem
+
+KEY_PATH_2=/home/ubuntu/id_rsa
 
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
@@ -19,6 +19,18 @@ fi
 BASTION_IP=$1
 PRIVATE_IP=$2
 COMMAND=$3
+
+scp_to_public_instance() {
+  if [ -z "$3" ]; then
+    echo "Usage: $0 <public-instance-ip> <local-file-path> <remote-file-path>"
+    exit 5
+  fi
+  LOCAL_FILE=$2
+  REMOTE_FILE=$3
+  scp -i "$KEY_PATH" "$LOCAL_FILE" ubuntu@$PUBLIC_IP:"$REMOTE_FILE"
+}
+#scp -i ~/Downloads/guy_networking_project_keypair.pem /home/guy/Downloads/guy_networking_project_keypair.pem ubuntu@16.171.60.136:/home/ubuntu
+
 
 # If only bastion IP is provided, connect to the bastion host
 if [ -z "$PRIVATE_IP" ]; then
