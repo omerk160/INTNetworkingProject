@@ -15,7 +15,7 @@ ssh-keygen -t rsa -b 4096 -f $NEW_KEY_PATH -N ""
 
 # Copy the new private key to the public instance
 scp -i "$OLD_KEY_PATH" $NEW_KEY_PATH ubuntu@$PUBLIC_IP:/home/ubuntu/id_rsa
-scp -i "$OLD_KEY_PATH" $NEW_KEY_PATH ubuntu@$PUBLIC_IP:/home/ubuntu/id_rsa.pub
+scp -i "$OLD_KEY_PATH" $NEW_KEY_PATH.pub ubuntu@$PUBLIC_IP:/home/ubuntu/id_rsa.pub
 
 # Add the new public key to the authorized_keys on the private instance
 ssh -i "$OLD_KEY_PATH" ubuntu@$PUBLIC_IP "echo $(cat $NEW_KEY_PATH.pub) >> ~/.ssh/authorized_keys"
