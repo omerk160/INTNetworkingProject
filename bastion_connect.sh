@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KEY_PATH_2=/home/$USER/id_rsa
+KEY_PATH_2=/home/ubuntu/id_rsa
 
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
