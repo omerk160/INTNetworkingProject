@@ -32,3 +32,4 @@ mv ${NEW_KEY_PATH}.pub /home/$USER/id_rsa.pub
 
 echo "SSH key rotation completed successfully."
 
+#
