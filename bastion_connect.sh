@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #KEY_PATH=/home/omer/omerNetworkingPTJkeypair.pem
-#KEY_PATH_2=/home/ubuntu/omerNetworkingPTJkeypair.pem
-KEY_PATH_2=~/.ssh/id_rsa
+KEY_PATH_2=/home/ubuntu/omerNetworkingPTJkeypair.pem
+#KEY_PATH_2=~/.ssh/id_rsa
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
   echo "KEY_PATH env var is expected"
