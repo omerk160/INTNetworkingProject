@@ -1,11 +1,22 @@
 #!/bin/bash
 
-
-KEY_PATH_2=/home/ubuntu/id_rsa
+#KEY_PATH=/home/omer/omerNetworkingPTJkeypair.pem
+KEY_PATH_2=/home/ubuntu/.ssh/id_rsa
 
 # Check if KEY_PATH environment variable is set
 if [ -z "$KEY_PATH" ]; then
-	@@ -20,6 +20,18 @@ BASTION_IP=$1
+  echo "KEY_PATH env var is expected"
+  exit 5
+fi
+
+# Check the number of arguments
+if [ "$#" -lt 1 ]; then
+  echo "Please provide bastion IP address"
+  exit 5
+fi
+
+# Assign variables
+BASTION_IP=$1
 PRIVATE_IP=$2
 COMMAND=$3
 
