@@ -48,4 +48,3 @@ mv $NEW_KEY_PATH $HOME/.ssh/id_rsa
 mv $PUBLIC_KEY_PATH $HOME/.ssh/id_rsa.pub
 
 echo "SSH key rotation completed successfully :)"
-$
