@@ -10,7 +10,7 @@ fi
 PRIVATE_IP=$1
 NEW_KEY_PATH="$HOME/.ssh/id_rsa_new"
 PUBLIC_KEY_PATH="$NEW_KEY_PATH.pub"
-OLD_KEY_PATH="$HOME/.ssh/id_rsa"
+OLD_KEY_PATH="$HOME/github_test_ssh_key"
 
 # Generate a new SSH key pair
 ssh-keygen -t rsa -b 4096 -f $NEW_KEY_PATH -N ""
